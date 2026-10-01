@@ -1,0 +1,28 @@
+{% extends "catalogo/base.html" %}
+{% block title %}Pedido {{ pedido.numero }} · Horta{% endblock %}
+{% block content %}
+<section class="basket-section">
+  <p class="eyebrow">PEDIDO REGISTRADO</p><h1>Recebemos suas escolhas.</h1>
+  <p>Seu pedido é <strong>{{ pedido.numero }}</strong>.</p>
+  <p class="message">Status: <strong>{{ pedido.get_status_display }}</strong>. O pedido fica registrado mesmo se você não enviar a mensagem no WhatsApp.</p>
+  <div class="basket-layout"><div class="checkout-form">
+    <h2>Detalhes do pedido</h2>
+    <p><strong>{{ pedido.nome_cliente }}</strong><br>{{ pedido.telefone_cliente }}</p>
+    <p><strong>{{ pedido.get_modalidade_display }}</strong>
+      {% if pedido.modalidade == "ENTREGA" %}<br>{{ pedido.logradouro }}, {{ pedido.numero_endereco }}{% if pedido.complemento %} — {{ pedido.complemento }}{% endif %}<br>{{ pedido.bairro }} · {{ pedido.cidade }}/{{ pedido.uf }}{% if pedido.cep %}<br>CEP {{ pedido.cep }}{% endif %}{% if pedido.referencia %}<br>Referência: {{ pedido.referencia }}{% endif %}{% endif %}
+    </p>
+    <p>Forma de pagamento: <strong>{{ pedido.get_forma_pagamento_display }}</strong>.<br><span class="hint">A escolha não significa que o pagamento foi realizado. O pagamento ocorre fora do site.</span></p>
+    {% if pedido.observacoes %}<p>Observações: {{ pedido.observacoes }}</p>{% endif %}
+    {% if whatsapp_url %}<a class="button" href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer">Abrir pedido no WhatsApp</a>
+    <p class="hint">Confira a mensagem e toque em enviar no WhatsApp. Você pode abrir novamente sem criar outro pedido.</p>
+    {% else %}<p class="message">Seu pedido foi salvo. O contato pelo WhatsApp estará disponível assim que a loja configurar o número.</p>{% endif %}
+    <a href="{% url 'catalogo:inicio' %}">Voltar ao catálogo</a>
+  </div>
+  <aside class="summary"><p class="eyebrow">{{ pedido.numero }}</p>
+    {% for item in pedido.itens.all %}<div class="checkout-line"><strong>{{ item.nome_produto }}</strong><span>{{ item.quantidade|floatformat:"-3" }} {% if item.unidade == "KG" %}kg{% else %}maço(s){% endif %} × R$ {{ item.preco_unitario|floatformat:2 }}</span><b>R$ {{ item.subtotal|floatformat:2 }}</b></div>{% endfor %}
+    <hr><h2>Subtotal dos produtos</h2><p class="total">R$ {{ pedido.subtotal_produtos|floatformat:2 }}</p>
+    {% if pedido.taxa_entrega == None %}<p>Entrega a combinar pelo WhatsApp.</p>
+    {% else %}<p>Taxa de entrega: R$ {{ pedido.taxa_entrega|floatformat:2 }}</p><p><strong>Total: R$ {{ pedido.total|floatformat:2 }}</strong></p>{% endif %}
+  </aside></div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+db.sqlite3-*
+.env
+.env.*
+!.env.example
+media/
+staticfiles/
+.production.json
+dist/
+deploy/wsgi_pythonanywhere.txt
+deploy/catalogo_inicial.json

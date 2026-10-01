@@ -1,0 +1,32 @@
+{% extends "catalogo/base.html" %}
+{% block title %}Minha cesta · Horta{% endblock %}
+{% block content %}
+<section class="basket-section">
+  <p class="eyebrow">SUAS ESCOLHAS</p><h1>Minha cesta</h1>
+  {% if itens %}
+  <div class="basket-layout"><div class="basket-items">
+    {% for item in itens %}
+    <article class="basket-item">
+      <div><p class="category">{% if item.opcao %}{{ item.opcao.get_unidade_display }}{% endif %}</p>
+        <h2>{% if item.opcao %}{{ item.opcao.produto.nome }}{% else %}Produto removido do catálogo{% endif %}</h2>
+        {% if item.disponivel %}<p>R$ {{ item.opcao.preco|floatformat:2 }} / {% if item.opcao.unidade == "KG" %}kg{% else %}maço{% endif %}</p>
+        {% else %}<p class="unavailable">Indisponível. Este item não entra no subtotal.</p>{% endif %}
+      </div>
+      {% if item.disponivel %}
+      <form method="post" action="{% url 'catalogo:atualizar' item.id %}">
+        {% csrf_token %}<label for="q-{{ item.id }}">Quantidade ({% if item.opcao.unidade == "KG" %}kg{% else %}maços{% endif %})</label>
+        <div class="controls"><input id="q-{{ item.id }}" name="quantidade" type="text" inputmode="{% if item.opcao.unidade == 'KG' %}decimal{% else %}numeric{% endif %}" value="{{ item.quantidade_input }}" maxlength="16" required><button class="secondary" type="submit">Atualizar</button></div>
+      </form>
+      <strong class="item-total">R$ {{ item.subtotal|floatformat:2 }}</strong>
+      {% endif %}
+      <form method="post" action="{% url 'catalogo:remover' item.id %}">{% csrf_token %}<button class="remove" type="submit" aria-label="Remover {% if item.opcao %}{{ item.opcao.produto.nome }}{% else %}produto indisponível{% endif %}">Remover</button></form>
+    </article>
+    {% endfor %}
+  </div>
+  <aside class="summary"><p class="eyebrow">RESUMO DA CESTA</p><h2>Subtotal dos produtos</h2><p class="total">R$ {{ subtotal|floatformat:2 }}</p><p>Entrega a combinar pelo WhatsApp.</p><hr><p class="hint">Os preços e a disponibilidade são atualizados conforme o catálogo.</p><a class="button" href="{% url 'pedidos:checkout' %}">Finalizar pedido</a><a class="button" href="{% url 'catalogo:inicio' %}">Continuar escolhendo</a></aside>
+  </div>
+  {% else %}
+  <div class="empty"><span class="empty-icon" aria-hidden="true">❧</span><h2>Sua cesta está esperando suas escolhas.</h2><p>Explore o catálogo e adicione seus primeiros produtos.</p><a class="button" href="{% url 'catalogo:inicio' %}">Ver produtos</a></div>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "catalogo/base.html" %}
+{% load static %}
+{% block title %}Finalizar pedido · Horta{% endblock %}
+{% block content %}
+<section class="basket-section">
+  <p class="eyebrow">FALTA POUCO</p><h1>Finalizar pedido</h1>
+  <p>Confira sua cesta e informe como deseja receber. O vendedor confirmará a disponibilidade e os detalhes com você.</p>
+  <div class="basket-layout">
+    <form class="checkout-form" method="post">
+      {% csrf_token %}{{ form.confirmacao }}
+      {% if form.errors %}<div class="message error" role="alert"><strong>Confira os campos abaixo.</strong>{{ form.non_field_errors }}</div>{% endif %}
+      <fieldset><legend>Seus dados e preferências</legend>
+        <div class="form-grid">{% for field in form.campos_cliente %}<div class="form-field">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}</div>
+      </fieldset>
+      <fieldset id="endereco"><legend>Endereço de entrega</legend>
+        <p class="hint">Para entrega, informe rua, número (ou S/N), bairro, cidade e UF. Na retirada, não é necessário preencher o endereço.</p>
+        {% if loja.regiao_entrega %}<p class="message">{{ loja.regiao_entrega }}</p>{% endif %}
+        <p class="hint">O frete será combinado conforme sua localização.</p>
+        <div class="form-grid">{% for field in form.campos_endereco %}<div class="form-field">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}</div>
+      </fieldset>
+      <div class="form-field">{{ form.observacoes.label_tag }}{{ form.observacoes }}{{ form.observacoes.errors }}</div>
+      <p class="hint">O pagamento é feito fora do site. Não informe dados de cartão nas observações.</p>
+      <div class="review-check">{{ form.revisar }}<label for="{{ form.revisar.id_for_label }}">{{ form.revisar.label }}</label></div>{{ form.revisar.errors }}
+      <button type="submit">Registrar pedido</button>
+      <p class="hint">Após registrar, você poderá abrir o WhatsApp para falar com o vendedor.</p>
+    </form>
+    <aside class="summary"><p class="eyebrow">REVISE SUA CESTA</p>
+      {% for item in itens %}<div class="checkout-line"><strong>{{ item.nome_produto }}</strong><span>{{ item.quantidade|floatformat:"-3" }} {% if item.unidade == "KG" %}kg{% else %}maço(s){% endif %} × R$ {{ item.preco_unitario|floatformat:2 }}</span><b>R$ {{ item.subtotal|floatformat:2 }}</b></div>{% endfor %}
+      <hr><h2>Subtotal dos produtos</h2><p class="total">R$ {{ subtotal|floatformat:2 }}</p>
+      <p>Entrega: frete a combinar pelo WhatsApp. Retirada: sem taxa.</p>
+      <a href="{% url 'catalogo:cesta' %}">Alterar minha cesta</a>
+    </aside>
+  </div>
+</section>
+<script src="{% static 'pedidos/checkout.js' %}" defer></script>
+{% endblock %}

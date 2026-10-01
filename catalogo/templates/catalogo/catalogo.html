@@ -1,0 +1,34 @@
+{% extends "catalogo/base.html" %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">SEU CATÁLOGO DA HORTA</p><h1>Mais verde<br>à sua mesa.</h1>
+  <p>Escolha suas verduras e legumes e monte sua cesta<br class="desktop"> na quantidade que você precisa.</p>
+  <a class="button" href="#produtos">Explorar produtos <span aria-hidden="true">↓</span></a></div>
+  <div class="hero-note"><span class="leaf" aria-hidden="true">❧</span><p>Por maço ou por quilo.<br><strong>Você escolhe.</strong></p></div>
+</section>
+<section id="produtos" class="products-section">
+  <div class="section-heading"><div><p class="eyebrow">ESCOLHA O QUE VAI À CESTA</p><h2>Nosso catálogo</h2></div><p>Preços por unidade de venda</p></div>
+  <p class="hint">Para quilos, use até três casas decimais: 0,300 kg = 300 g. Maços são vendidos em quantidades inteiras.</p>
+  <div class="grid">
+  {% for produto in produtos %}
+    <article class="product">
+      {% if produto.foto %}<img class="product-image" src="{{ produto.foto.url }}" alt="{{ produto.nome }}" loading="lazy">
+      {% else %}<div class="product-image placeholder" aria-label="Produto sem foto"><span aria-hidden="true">❧</span><span>Da nossa horta</span></div>{% endif %}
+      <div class="product-body"><p class="category">{{ produto.categoria.nome }}</p><h3>{{ produto.nome }}</h3>
+      {% if produto.descricao %}<p class="description">{{ produto.descricao }}</p>{% endif %}
+      {% for opcao in produto.opcoes_venda.all %}
+        <form class="option" method="post" action="{% url 'catalogo:adicionar' opcao.pk %}">
+          {% csrf_token %}
+          <div class="price"><strong>R$ {{ opcao.preco|floatformat:2 }}</strong><span>/ {% if opcao.unidade == "KG" %}kg{% else %}maço{% endif %}</span></div>
+          <label for="q-{{ opcao.pk }}">Quantidade ({% if opcao.unidade == "KG" %}kg{% else %}maços{% endif %})</label>
+          <div class="controls"><input id="q-{{ opcao.pk }}" name="quantidade" type="text" inputmode="{% if opcao.unidade == 'KG' %}decimal{% else %}numeric{% endif %}" value="1" maxlength="16" required aria-label="Quantidade de {{ produto.nome }} em {{ opcao.get_unidade_display }}">
+          <button type="submit">Adicionar <span aria-hidden="true">+</span></button></div>
+        </form>
+      {% endfor %}</div>
+    </article>
+  {% empty %}
+    <div class="empty"><h3>Em breve, mais verde por aqui.</h3><p>Estamos preparando nossos produtos. Volte para conferir as opções disponíveis.</p></div>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}
