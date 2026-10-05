@@ -1,10 +1,11 @@
 {% extends "catalogo/base.html" %}
+{% load static %}
 {% block content %}
 <section class="hero">
   <div><p class="eyebrow">SEU CATÁLOGO DA HORTA</p><h1>Mais verde<br>à sua mesa.</h1>
   <p>Escolha suas verduras e legumes e monte sua cesta<br class="desktop"> na quantidade que você precisa.</p>
   <a class="button" href="#produtos">Explorar produtos <span aria-hidden="true">↓</span></a></div>
-  <div class="hero-note"><span class="leaf" aria-hidden="true">❧</span><p>Por maço ou por quilo.<br><strong>Você escolhe.</strong></p></div>
+  <div class="hero-note"><img class="hero-photo" src="{% static 'catalogo/foto-padrao.jpg' %}" alt="Broto crescendo na terra"><p>Por maço ou por quilo.<br><strong>Você escolhe.</strong></p></div>
 </section>
 <section id="produtos" class="products-section">
   <div class="section-heading"><div><p class="eyebrow">ESCOLHA O QUE VAI À CESTA</p><h2>Nosso catálogo</h2></div><p>Preços por unidade de venda</p></div>
@@ -13,7 +14,7 @@
   {% for produto in produtos %}
     <article class="product">
       {% if produto.foto %}<img class="product-image" src="{{ produto.foto.url }}" alt="{{ produto.nome }}" loading="lazy">
-      {% else %}<div class="product-image placeholder" aria-label="Produto sem foto"><span aria-hidden="true">❧</span><span>Da nossa horta</span></div>{% endif %}
+      {% else %}<img class="product-image" src="{% static 'catalogo/foto-padrao.jpg' %}" alt="Imagem ilustrativa de plantas" loading="lazy">{% endif %}
       <div class="product-body"><p class="category">{{ produto.categoria.nome }}</p><h3>{{ produto.nome }}</h3>
       {% if produto.descricao %}<p class="description">{{ produto.descricao }}</p>{% endif %}
       {% for opcao in produto.opcoes_venda.all %}

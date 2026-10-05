@@ -26,12 +26,15 @@ with ZipFile(saida, "w", ZIP_DEFLATED) as pacote:
         for caminho in (raiz / pasta).rglob("*"):
             if not caminho.is_file() or "__pycache__" in caminho.parts:
                 continue
-            if caminho.suffix not in {".py", ".html", ".css", ".js", ".md"}:
+            if caminho.suffix not in {".py", ".html", ".css", ".js", ".md", ".jpg", ".jpeg", ".png", ".webp"}:
                 continue
             pacote.write(caminho, "horta/" + caminho.relative_to(raiz).as_posix())
     for nome in ["manage.py", "requirements.txt", "README.md", ".gitignore"]:
         pacote.write(raiz / nome, "horta/" + nome)
     pacote.writestr("horta/deploy/catalogo_inicial.json", dados.getvalue().encode("utf-8"))
+    publico = raiz / "deploy" / "catalogo_publico.json"
+    if publico.exists():
+        pacote.write(publico, "horta/deploy/catalogo_publico.json")
     media = (raiz / "media").resolve()
     for nome in set(Produto.objects.exclude(foto="").values_list("foto", flat=True)):
         caminho = (media / nome).resolve()

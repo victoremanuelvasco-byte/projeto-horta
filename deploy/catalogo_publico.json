@@ -1,0 +1,442 @@
+[
+{
+  "model": "catalogo.categoria",
+  "pk": 1,
+  "fields": {
+    "nome": "Folhagens"
+  }
+},
+{
+  "model": "catalogo.categoria",
+  "pk": 2,
+  "fields": {
+    "nome": "Temperos"
+  }
+},
+{
+  "model": "catalogo.categoria",
+  "pk": 3,
+  "fields": {
+    "nome": "Legumes"
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 1,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface",
+    "descricao": "Alface para saladas e sanduiches.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 2,
+  "fields": {
+    "categoria": 1,
+    "nome": "Couve",
+    "descricao": "Folhas de couve para refogados, sucos e saladas.",
+    "foto": "produtos/couve.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 3,
+  "fields": {
+    "categoria": 2,
+    "nome": "Cheiro-verde",
+    "descricao": "Tempero para finalizar suas receitas.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 4,
+  "fields": {
+    "categoria": 3,
+    "nome": "Tomate",
+    "descricao": "Tomates para saladas e molhos.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 5,
+  "fields": {
+    "categoria": 3,
+    "nome": "Cenoura",
+    "descricao": "Cenouras para saladas, sopas e acompanhamentos.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 6,
+  "fields": {
+    "categoria": 3,
+    "nome": "Abobrinha",
+    "descricao": "Abobrinhas para refogar, assar ou rechear.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 7,
+  "fields": {
+    "categoria": 1,
+    "nome": "Rúcula",
+    "descricao": "Rúcula fresca.",
+    "foto": "produtos/rucula.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 8,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface Crespa",
+    "descricao": "Alface crespa para saladas e sanduíches.",
+    "foto": "produtos/alface-crespa.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 9,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface Repolhuda",
+    "descricao": "Alface repolhuda para saladas e sanduíches.",
+    "foto": "produtos/alface-repolhuda.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 10,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface Rainha",
+    "descricao": "Alface rainha para saladas e sanduíches.",
+    "foto": "produtos/alface-rainha.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 11,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface Roxa",
+    "descricao": "Alface roxa para saladas e sanduíches.",
+    "foto": "produtos/alface-roxa.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 12,
+  "fields": {
+    "categoria": 1,
+    "nome": "Alface Lisa",
+    "descricao": "Alface lisa para saladas e sanduíches.",
+    "foto": "produtos/alface-lisa.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 13,
+  "fields": {
+    "categoria": 2,
+    "nome": "Cheiro-verde com coentro",
+    "descricao": "Cheiro-verde com coentro.",
+    "foto": "produtos/cheiro-verde-nova.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 14,
+  "fields": {
+    "categoria": 2,
+    "nome": "Cheiro-verde com salsa",
+    "descricao": "Cheiro-verde com salsa.",
+    "foto": "produtos/cheiro-verde-nova.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 15,
+  "fields": {
+    "categoria": 1,
+    "nome": "Agrião",
+    "descricao": "",
+    "foto": "produtos/agriao.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 16,
+  "fields": {
+    "categoria": 1,
+    "nome": "Almeirão",
+    "descricao": "",
+    "foto": "produtos/almeirao.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 17,
+  "fields": {
+    "categoria": 2,
+    "nome": "Hortelã",
+    "descricao": "",
+    "foto": "produtos/hortela.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 18,
+  "fields": {
+    "categoria": 1,
+    "nome": "Espinafre",
+    "descricao": "",
+    "foto": "produtos/espinafre.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 19,
+  "fields": {
+    "categoria": 1,
+    "nome": "Jambu",
+    "descricao": "",
+    "foto": "produtos/jambu.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 1,
+  "fields": {
+    "produto": 1,
+    "unidade": "MACO",
+    "preco": "3.50",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 2,
+  "fields": {
+    "produto": 2,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 3,
+  "fields": {
+    "produto": 2,
+    "unidade": "KG",
+    "preco": "16.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 4,
+  "fields": {
+    "produto": 3,
+    "unidade": "MACO",
+    "preco": "2.50",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 5,
+  "fields": {
+    "produto": 4,
+    "unidade": "KG",
+    "preco": "8.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 6,
+  "fields": {
+    "produto": 5,
+    "unidade": "KG",
+    "preco": "6.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 7,
+  "fields": {
+    "produto": 6,
+    "unidade": "KG",
+    "preco": "7.50",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 8,
+  "fields": {
+    "produto": 7,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 9,
+  "fields": {
+    "produto": 7,
+    "unidade": "KG",
+    "preco": "15.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 10,
+  "fields": {
+    "produto": 8,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 11,
+  "fields": {
+    "produto": 9,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 12,
+  "fields": {
+    "produto": 10,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 13,
+  "fields": {
+    "produto": 11,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 14,
+  "fields": {
+    "produto": 12,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 15,
+  "fields": {
+    "produto": 13,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 16,
+  "fields": {
+    "produto": 14,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 17,
+  "fields": {
+    "produto": 15,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 18,
+  "fields": {
+    "produto": 16,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 19,
+  "fields": {
+    "produto": 17,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 20,
+  "fields": {
+    "produto": 18,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 21,
+  "fields": {
+    "produto": 19,
+    "unidade": "MACO",
+    "preco": "4.00",
+    "disponivel": true
+  }
+}
+]
