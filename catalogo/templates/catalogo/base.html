@@ -4,15 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Horta · Catálogo{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'catalogo/site.css' %}?v=2">
+  <title>{% block title %}ADQUIREHORT · Catálogo{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'catalogo/site.css' %}?v=9">
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header class="header">
-    <a class="brand" href="{% url 'catalogo:inicio' %}"><span aria-hidden="true">❧</span> Horta<span class="brand-sub">VERDURAS E LEGUMES</span></a>
+    <a class="brand" href="{% url 'catalogo:inicio' %}"><span aria-hidden="true">❧</span> ADQUIREHORT<span class="brand-sub">VERDURAS E LEGUMES</span></a>
     <nav aria-label="Navegação principal">
-      <a href="{% url 'catalogo:inicio' %}">Catálogo</a>
+      <a href="{% url 'catalogo:inicio' %}#quem-somos">Quem somos</a>
+      <a href="{% url 'catalogo:inicio' %}#localizacao">Localização</a>
       <a class="basket-link" href="{% url 'catalogo:cesta' %}">Minha cesta <span>{{ cesta_contagem }}</span></a>
     </nav>
   </header>
@@ -22,6 +23,6 @@
     </div>{% endif %}
     {% block content %}{% endblock %}
   </main>
-  <footer>Horta <span>Escolha seus produtos, do seu jeito.</span></footer>
+  <footer>ADQUIREHORT <span>Escolha seus produtos, do seu jeito.</span></footer>
 </body>
 </html>

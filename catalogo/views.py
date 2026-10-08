@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
+from django.http import Http404
 from django.views.decorators.http import require_GET, require_POST
 
 from .cesta import CHAVE_CESTA, resumo_cesta, validar_quantidade
@@ -17,6 +18,8 @@ def catalogo(request):
     ).distinct().select_related("categoria").prefetch_related(
         Prefetch("opcoes_venda", queryset=OpcaoVenda.objects.filter(disponivel=True))
     )
+    for produto in produtos:
+        produto.escolher_preparo = any(opcao.preparo for opcao in produto.opcoes_venda.all())
     return render(request, "catalogo/catalogo.html", {
         "produtos": produtos,
         "cesta_contagem": len(request.session.get(CHAVE_CESTA, {})),
@@ -41,8 +44,18 @@ def adicionar(request, opcao_id):
         return redirect("catalogo:inicio")
     itens[str(opcao.pk)] = str(quantidade)
     request.session[CHAVE_CESTA] = itens
-    messages.success(request, f"{opcao.produto.nome} adicionado à cesta.")
+    messages.success(request, f"{opcao.nome_produto} adicionado à cesta.")
     return redirect("catalogo:cesta")
+
+
+@require_POST
+def adicionar_produto(request, produto_id):
+    try:
+        opcao_id = int(request.POST.get('opcao', ''))
+    except (TypeError, ValueError):
+        raise Http404('Opção inválida.')
+    opcao = get_object_or_404(OpcaoVenda, pk=opcao_id, produto_id=produto_id, disponivel=True, produto__ativo=True)
+    return adicionar(request, opcao.pk)
 
 
 @require_POST

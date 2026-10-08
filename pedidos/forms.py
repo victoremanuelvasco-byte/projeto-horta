@@ -24,6 +24,7 @@ class CheckoutForm(forms.ModelForm):
             "telefone_cliente": forms.TextInput(attrs={"inputmode": "tel", "autocomplete": "tel"}),
             "nome_cliente": forms.TextInput(attrs={"autocomplete": "name"}),
             "observacoes": forms.Textarea(attrs={"rows": 3}),
+            "cep": forms.TextInput(attrs={"inputmode": "numeric", "autocomplete": "postal-code", "placeholder": "00000-000", "aria-describedby": "cep-status"}),
             "uf": forms.Select(choices=[("", "Selecione")] + [(uf, uf) for uf in UFS]),
         }
 

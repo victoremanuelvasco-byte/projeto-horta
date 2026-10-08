@@ -45,6 +45,7 @@ class OpcaoVenda(models.Model):
         verbose_name="produto",
     )
     unidade = models.CharField("unidade", max_length=4, choices=Unidade.choices)
+    preparo = models.CharField("preparo", max_length=30, blank=True)
     preco = models.DecimalField(
         "preço (R$)", max_digits=10, decimal_places=2,
         validators=[MinValueValidator(Decimal("0.01"))],
@@ -58,7 +59,7 @@ class OpcaoVenda(models.Model):
         verbose_name_plural = "opções de venda"
         constraints = [
             models.UniqueConstraint(
-                fields=["produto", "unidade"], name="catalogo_produto_unidade_unicos",
+                fields=["produto", "unidade", "preparo"], name="catalogo_produto_unidade_preparo_unicos",
             ),
             models.CheckConstraint(
                 condition=models.Q(preco__gt=0), name="catalogo_preco_positivo",
@@ -70,4 +71,8 @@ class OpcaoVenda(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.produto} — {self.get_unidade_display()}"
+        return f"{self.nome_produto} — {self.get_unidade_display()}"
+
+    @property
+    def nome_produto(self):
+        return f"{self.produto.nome} {self.preparo}" if self.preparo else self.produto.nome

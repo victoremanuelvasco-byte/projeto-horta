@@ -1,5 +1,5 @@
 {% extends "catalogo/base.html" %}
-{% block title %}Minha cesta · Horta{% endblock %}
+{% block title %}Minha cesta · ADQUIREHORT{% endblock %}
 {% block content %}
 <section class="basket-section">
   <p class="eyebrow">SUAS ESCOLHAS</p><h1>Minha cesta</h1>
@@ -8,7 +8,7 @@
     {% for item in itens %}
     <article class="basket-item">
       <div><p class="category">{% if item.opcao %}{{ item.opcao.get_unidade_display }}{% endif %}</p>
-        <h2>{% if item.opcao %}{{ item.opcao.produto.nome }}{% else %}Produto removido do catálogo{% endif %}</h2>
+        <h2>{% if item.opcao %}{{ item.opcao.nome_produto }}{% else %}Produto removido do catálogo{% endif %}</h2>
         {% if item.disponivel %}<p>R$ {{ item.opcao.preco|floatformat:2 }} / {% if item.opcao.unidade == "KG" %}kg{% else %}maço{% endif %}</p>
         {% else %}<p class="unavailable">Indisponível. Este item não entra no subtotal.</p>{% endif %}
       </div>

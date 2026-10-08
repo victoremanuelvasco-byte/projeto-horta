@@ -1,15 +1,16 @@
 {% extends "catalogo/base.html" %}
 {% load static %}
 {% block content %}
-<section class="hero">
-  <div><p class="eyebrow">SEU CATÁLOGO DA HORTA</p><h1>Mais verde<br>à sua mesa.</h1>
-  <p>Escolha suas verduras e legumes e monte sua cesta<br class="desktop"> na quantidade que você precisa.</p>
-  <a class="button" href="#produtos">Explorar produtos <span aria-hidden="true">↓</span></a></div>
-  <div class="hero-note"><img class="hero-photo" src="{% static 'catalogo/foto-padrao.jpg' %}" alt="Broto crescendo na terra"><p>Por maço ou por quilo.<br><strong>Você escolhe.</strong></p></div>
+<section class="hero hero-compact" aria-labelledby="hero-titulo">
+  <div class="hero-copy">
+    <h1 id="hero-titulo">Mais verde à sua mesa.</h1>
+    <p class="hero-description">Verduras e legumes frescos. Monte sua cesta.</p>
+  </div>
+  <img class="hero-thumbnail" src="{% static 'catalogo/foto-padrao.jpg' %}" alt="Broto crescendo na terra" width="88" height="88">
 </section>
 <section id="produtos" class="products-section">
   <div class="section-heading"><div><p class="eyebrow">ESCOLHA O QUE VAI À CESTA</p><h2>Nosso catálogo</h2></div><p>Preços por unidade de venda</p></div>
-  <p class="hint">Para quilos, use até três casas decimais: 0,300 kg = 300 g. Maços são vendidos em quantidades inteiras.</p>
+  <p class="hint">Folhagens e temperos são vendidos por maço, em quantidades inteiras. Para mandiocas, informe o peso em quilos: 0,300 kg = 300 g.</p>
   <div class="grid">
   {% for produto in produtos %}
     <article class="product">
@@ -17,6 +18,17 @@
       {% else %}<img class="product-image" src="{% static 'catalogo/foto-padrao.jpg' %}" alt="Imagem ilustrativa de plantas" loading="lazy">{% endif %}
       <div class="product-body"><p class="category">{{ produto.categoria.nome }}</p><h3>{{ produto.nome }}</h3>
       {% if produto.descricao %}<p class="description">{{ produto.descricao }}</p>{% endif %}
+      {% if produto.escolher_preparo %}
+        <form class="option" method="post" action="{% url 'catalogo:adicionar_produto' produto.pk %}">
+          {% csrf_token %}
+          <label for="preparo-{{ produto.pk }}">Como você quer a mandioca?</label>
+          <select class="preparation-select" id="preparo-{{ produto.pk }}" name="opcao" required>
+            {% for opcao in produto.opcoes_venda.all %}<option value="{{ opcao.pk }}">{{ opcao.preparo|capfirst }} — R$ {{ opcao.preco|floatformat:2 }}/kg</option>{% endfor %}
+          </select>
+          <label for="q-produto-{{ produto.pk }}">Quantidade (kg)</label>
+          <div class="controls"><input id="q-produto-{{ produto.pk }}" name="quantidade" type="text" inputmode="decimal" value="1" maxlength="16" required aria-label="Quantidade de {{ produto.nome }} em quilos"><button type="submit">Adicionar <span aria-hidden="true">+</span></button></div>
+        </form>
+      {% else %}
       {% for opcao in produto.opcoes_venda.all %}
         <form class="option" method="post" action="{% url 'catalogo:adicionar' opcao.pk %}">
           {% csrf_token %}
@@ -25,11 +37,39 @@
           <div class="controls"><input id="q-{{ opcao.pk }}" name="quantidade" type="text" inputmode="{% if opcao.unidade == 'KG' %}decimal{% else %}numeric{% endif %}" value="1" maxlength="16" required aria-label="Quantidade de {{ produto.nome }} em {{ opcao.get_unidade_display }}">
           <button type="submit">Adicionar <span aria-hidden="true">+</span></button></div>
         </form>
-      {% endfor %}</div>
+      {% endfor %}
+      {% endif %}</div>
     </article>
   {% empty %}
     <div class="empty"><h3>Em breve, mais verde por aqui.</h3><p>Estamos preparando nossos produtos. Volte para conferir as opções disponíveis.</p></div>
   {% endfor %}
   </div>
+</section>
+<section id="quem-somos" class="about-section" aria-labelledby="quem-somos-titulo">
+  <div class="about-heading">
+    <p class="eyebrow">NOSSA HISTÓRIA</p>
+    <h2 id="quem-somos-titulo">Quem somos</h2>
+    <p class="about-tagline">Uma tradição de família,<br> cultivada com cuidado.</p>
+  </div>
+  <div class="about-story">
+    <p>Somos <strong>Vitor Emanoel e Elza Maria</strong>, sobrinho e tia, à frente da ADQUIREHORT. A horta faz parte da nossa história familiar, e Vitor cresceu nesse ramo, aprendendo desde cedo o cuidado com o cultivo.</p>
+    <p>Colhemos as verduras no momento certo para preservar o frescor e a qualidade, reduzir perdas e levar à sua mesa produtos bem cuidados para o consumo.</p>
+    <p class="about-promise">Nosso compromisso é fazer cada compra valer a pena: qualidade e frescor que valorizam o que você paga.</p>
+  </div>
+</section>
+<section id="localizacao" class="location-section" aria-labelledby="localizacao-titulo">
+  <div>
+    <p class="eyebrow">PERTO DE VOCÊ</p>
+    <h2 id="localizacao-titulo">Onde estamos</h2>
+    <p class="location-intro">Estamos localizados no Bairro Capelasso, Linha 94.</p>
+    <p class="location-intro"><strong>Atendimento:</strong> de segunda a sexta-feira e aos sábados pela manhã.</p>
+  </div>
+  <a class="location-map-link" href="https://maps.app.goo.gl/qwairj4QC1HFHWUN8" target="_blank" rel="noopener noreferrer" aria-label="Ver localização da horta no Google Maps (abre em nova aba)">
+    <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    <span>Ver no Google Maps</span>
+  </a>
 </section>
 {% endblock %}

@@ -230,11 +230,78 @@
   }
 },
 {
+  "model": "catalogo.produto",
+  "pk": 20,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca branca com casca",
+    "descricao": "Mandioca branca, com casca. Vendida por quilo.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 21,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca branca descascada",
+    "descricao": "Mandioca branca, descascada. Vendida por quilo.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 22,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca amarela com casca",
+    "descricao": "Mandioca amarela, com casca. Vendida por quilo.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 23,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca amarela descascada",
+    "descricao": "Mandioca amarela, descascada. Vendida por quilo.",
+    "foto": "",
+    "ativo": false
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 24,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca branca",
+    "descricao": "Escolha com casca ou descascada. Venda por quilo.",
+    "foto": "produtos/mandioca.jpg",
+    "ativo": true
+  }
+},
+{
+  "model": "catalogo.produto",
+  "pk": 25,
+  "fields": {
+    "categoria": 3,
+    "nome": "Mandioca amarela",
+    "descricao": "Escolha com casca ou descascada. Venda por quilo.",
+    "foto": "produtos/mandioca.jpg",
+    "ativo": true
+  }
+},
+{
   "model": "catalogo.opcaovenda",
   "pk": 1,
   "fields": {
     "produto": 1,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "3.50",
     "disponivel": true
   }
@@ -245,6 +312,7 @@
   "fields": {
     "produto": 2,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -255,8 +323,9 @@
   "fields": {
     "produto": 2,
     "unidade": "KG",
+    "preparo": "",
     "preco": "16.00",
-    "disponivel": true
+    "disponivel": false
   }
 },
 {
@@ -265,6 +334,7 @@
   "fields": {
     "produto": 3,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "2.50",
     "disponivel": true
   }
@@ -275,6 +345,7 @@
   "fields": {
     "produto": 4,
     "unidade": "KG",
+    "preparo": "",
     "preco": "8.00",
     "disponivel": true
   }
@@ -285,6 +356,7 @@
   "fields": {
     "produto": 5,
     "unidade": "KG",
+    "preparo": "",
     "preco": "6.00",
     "disponivel": true
   }
@@ -295,6 +367,7 @@
   "fields": {
     "produto": 6,
     "unidade": "KG",
+    "preparo": "",
     "preco": "7.50",
     "disponivel": true
   }
@@ -305,6 +378,7 @@
   "fields": {
     "produto": 7,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -315,8 +389,9 @@
   "fields": {
     "produto": 7,
     "unidade": "KG",
+    "preparo": "",
     "preco": "15.00",
-    "disponivel": true
+    "disponivel": false
   }
 },
 {
@@ -325,6 +400,7 @@
   "fields": {
     "produto": 8,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -335,6 +411,7 @@
   "fields": {
     "produto": 9,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -345,6 +422,7 @@
   "fields": {
     "produto": 10,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -355,6 +433,7 @@
   "fields": {
     "produto": 11,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -365,6 +444,7 @@
   "fields": {
     "produto": 12,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -375,6 +455,7 @@
   "fields": {
     "produto": 13,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -385,6 +466,7 @@
   "fields": {
     "produto": 14,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -395,6 +477,7 @@
   "fields": {
     "produto": 15,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -405,6 +488,7 @@
   "fields": {
     "produto": 16,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -415,6 +499,7 @@
   "fields": {
     "produto": 17,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -425,6 +510,7 @@
   "fields": {
     "produto": 18,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
     "disponivel": true
   }
@@ -435,7 +521,96 @@
   "fields": {
     "produto": 19,
     "unidade": "MACO",
+    "preparo": "",
     "preco": "4.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 22,
+  "fields": {
+    "produto": 20,
+    "unidade": "KG",
+    "preparo": "",
+    "preco": "5.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 23,
+  "fields": {
+    "produto": 21,
+    "unidade": "KG",
+    "preparo": "",
+    "preco": "6.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 24,
+  "fields": {
+    "produto": 22,
+    "unidade": "KG",
+    "preparo": "",
+    "preco": "5.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 25,
+  "fields": {
+    "produto": 23,
+    "unidade": "KG",
+    "preparo": "",
+    "preco": "6.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 26,
+  "fields": {
+    "produto": 24,
+    "unidade": "KG",
+    "preparo": "com casca",
+    "preco": "5.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 27,
+  "fields": {
+    "produto": 24,
+    "unidade": "KG",
+    "preparo": "descascada",
+    "preco": "6.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 28,
+  "fields": {
+    "produto": 25,
+    "unidade": "KG",
+    "preparo": "com casca",
+    "preco": "5.00",
+    "disponivel": true
+  }
+},
+{
+  "model": "catalogo.opcaovenda",
+  "pk": 29,
+  "fields": {
+    "produto": 25,
+    "unidade": "KG",
+    "preparo": "descascada",
+    "preco": "6.00",
     "disponivel": true
   }
 }

@@ -24,7 +24,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 @admin.register(OpcaoVenda)
 class OpcaoVendaAdmin(admin.ModelAdmin):
-    list_display = ["produto", "unidade", "preco", "disponivel"]
+    list_display = ["produto", "unidade", "preparo", "preco", "disponivel"]
     list_filter = ["unidade", "disponivel"]
     search_fields = ["produto__nome"]
     list_select_related = ["produto"]

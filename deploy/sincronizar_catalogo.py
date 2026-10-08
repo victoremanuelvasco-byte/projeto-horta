@@ -42,7 +42,7 @@ else:
             modelo = modelos[item['model']]
             existente = modelo.objects.filter(pk=item['pk']).first()
             if existente:
-                campos = ['nome'] if modelo in (Categoria, Produto) else ['produto_id', 'unidade']
+                campos = ['nome'] if modelo in (Categoria, Produto) else ['produto_id', 'unidade', 'preparo']
                 for campo in campos:
                     chave = 'produto' if campo == 'produto_id' else campo
                     if getattr(existente, campo) != item['fields'][chave]:

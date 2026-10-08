@@ -29,7 +29,7 @@ def cotar(cesta, bloquear=False):
         subtotal += valor
         itens.append({
             "opcao": opcao, "quantidade": quantidade, "subtotal": valor,
-            "nome_produto": opcao.produto.nome, "unidade": opcao.unidade,
+            "nome_produto": opcao.nome_produto, "unidade": opcao.unidade,
             "preco_unitario": opcao.preco,
         })
     resumo = [
