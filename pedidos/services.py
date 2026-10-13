@@ -79,15 +79,14 @@ def dinheiro(valor):
 
 def mensagem_whatsapp(pedido):
     linhas = [
-        f"Olá! Meu pedido é {pedido.numero}.",
-        f"Cliente: {pedido.nome_cliente}",
-        f"Contato: {pedido.telefone_cliente}", "",
+        f"Olá, meu pedido é {pedido.numero}",
+        f"Cliente: {pedido.nome_cliente}", "", "Produtos:",
     ]
     for item in pedido.itens.all():
         quantidade = format(item.quantidade, "f").rstrip("0").rstrip(".").replace(".", ",")
         unidade = "kg" if item.unidade == "KG" else "maço(s)"
         linhas.append(f"- {item.nome_produto}: {quantidade} {unidade} x {dinheiro(item.preco_unitario)} = {dinheiro(item.subtotal)}")
-    linhas += ["", f"Subtotal dos produtos: {dinheiro(pedido.subtotal_produtos)}", f"Recebimento: {pedido.get_modalidade_display()}"]
+    linhas += ["", f"Subtotal da compra: {dinheiro(pedido.subtotal_produtos)}", f"Recebimento: {pedido.get_modalidade_display()}"]
     if pedido.modalidade == "ENTREGA":
         linhas.append(f"Endereço: {pedido.logradouro}, {pedido.numero_endereco}; {pedido.bairro}; {pedido.cidade}/{pedido.uf}")
         for rotulo, campo in [("CEP", "cep"), ("Complemento", "complemento"), ("Referência", "referencia")]:
@@ -99,10 +98,11 @@ def mensagem_whatsapp(pedido):
             linhas.append(f"Taxa de entrega: {dinheiro(pedido.taxa_entrega)}")
     if pedido.total is not None:
         linhas.append(f"Total: {dinheiro(pedido.total)}")
-    linhas.append(f"Forma de pagamento: {pedido.get_forma_pagamento_display()} (pagamento fora do site).")
+    else:
+        linhas.append("Total a confirmar após combinar a taxa de entrega.")
+    linhas.append(f"Forma de pagamento: {pedido.get_forma_pagamento_display()}")
     if pedido.observacoes:
         linhas.append(f"Observações: {pedido.observacoes}")
-    linhas.append("Aguardo a confirmação do vendedor.")
     return "\n".join(linhas)
 
 

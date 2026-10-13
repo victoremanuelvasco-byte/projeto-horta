@@ -62,6 +62,10 @@
 
 .about-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;padding:28px 32px;margin:0 0 28px;border:1px solid #dce2d6;border-radius:14px;background:#fff;scroll-margin-top:20px}
 .about-heading,.about-story{min-width:0}
+.about-heading{display:flex;flex-direction:column;align-items:flex-start;padding:24px;border-radius:12px;background:linear-gradient(135deg,#e8eddf,#f3f5ee)}
+.about-sprout{width:64px;height:52px;color:#63804e;margin:22px 0 12px}
+.about-caption{margin:0;font:18px/1.5 Georgia,serif;color:#52634e}
+.about-story{align-self:center}
 .about-heading .eyebrow{margin-bottom:10px}
 .about-tagline{font:20px/1.4 Georgia,serif;color:#56704f;margin:14px 0 0}
 .about-story p{margin:0 0 14px;color:#52634e;font-size:15px;line-height:1.7;overflow-wrap:anywhere}
@@ -69,6 +73,9 @@
 .about-story .about-promise{margin:0;padding-left:14px;border-left:3px solid #63804e;color:#285c3e;font-weight:600}
 @media(max-width:650px){
   .about-section{grid-template-columns:1fr;gap:20px;padding:22px 20px;margin-bottom:24px}
+  .about-heading{padding:20px}
+  .about-sprout{width:48px;height:40px;margin:14px 0 8px}
+  .about-caption{font-size:17px}
   .about-tagline{font-size:18px;margin-top:10px}
   .about-tagline br{display:none}
   .about-story p{font-size:14px;line-height:1.65}
